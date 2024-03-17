@@ -87,8 +87,10 @@ class RegularExpressionsTests {
     @Test
     void mobileIsraelPhoneTest() {
     	String regex = RegularExpresions.mobileIsraelPhone();
-    	assertTrue("+972-53-284-53-41".matches(regex));
+    	assertTrue("+972-53-2845341".matches(regex));
+    	assertTrue("053-2845341".matches(regex));
     	assertTrue("053-284-53-41".matches(regex));
+        assertTrue("54-722-33-44".matches(regex));
     	assertFalse("97253-284-53-41".matches(regex));
     }
 }
