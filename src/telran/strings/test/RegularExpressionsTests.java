@@ -2,6 +2,7 @@ package telran.strings.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import telran.strings.RegularExpresions;
@@ -92,6 +93,32 @@ class RegularExpressionsTests {
     	assertTrue("053-284-53-41".matches(regex));
         assertTrue("54-722-33-44".matches(regex));
     	assertFalse("97253-284-53-41".matches(regex));
+    }
+    
+    @Test
+    @DisplayName("test for IP v4 address RegEx")
+    void ipV4AddressTest() {
+    	String ipV4Regex = RegularExpresions.ipV4Address();
+    	assertTrue("1.2.3.4".matches(ipV4Regex));
+    	assertFalse("1.2.3".matches(ipV4Regex));
+    	assertFalse("1 2.3.4".matches(ipV4Regex));
+    	assertFalse("1.2.3.4.5".matches(ipV4Regex));
+    	assertFalse("1.2.3&4".matches(ipV4Regex));
+    }
+    
+    @Test
+    @DisplayName("test for simp.arithm.express")
+    void simpleArithmeticExpressionsTest() {
+    	String regex = RegularExpresions.SimpleArithmeticExpression();
+    	assertTrue("20".matches(regex));
+    	assertTrue(" 20 +3 /2 *100".matches(regex));
+    	assertTrue("10000-1".matches(regex));
+    	assertTrue("10000-1 ".matches(regex));
+    	assertFalse("-20".matches(regex));
+    	assertFalse("20 ** 3".matches(regex));
+    	assertFalse(" 20 +3 /2 *100 +".matches(regex));
+    	assertFalse(" 20 +3 //2 *100 +".matches(regex));
+
     }
 }
 
