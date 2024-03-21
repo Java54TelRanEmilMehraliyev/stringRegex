@@ -109,7 +109,7 @@ class RegularExpressionsTests {
     @Test
     @DisplayName("test for simp.arithm.express")
     void simpleArithmeticExpressionsTest() {
-    	String regex = RegularExpresions.SimpleArithmeticExpression();
+    	String regex = RegularExpresions.commonArithmeticExpression();
     	assertTrue("20".matches(regex));
     	assertTrue(" 20 +3 /2 *100".matches(regex));
     	assertTrue("10000-1".matches(regex));
@@ -118,6 +118,21 @@ class RegularExpressionsTests {
     	assertFalse("20 ** 3".matches(regex));
     	assertFalse(" 20 +3 /2 *100 +".matches(regex));
     	assertFalse(" 20 +3 //2 *100 +".matches(regex));
+    }
+    @Test
+    @DisplayName("test of arithmeticExpressions with numbers or variables and brackets")
+    void arithmeticExpressionTest() {
+    	String regex = RegularExpresions.arithmeticOperandExpression();
+    	assertTrue("(20.5 + abc)*2".matches(regex));
+    	assertTrue("(20.5 + abc))*2".matches(regex));
+    	assertTrue("(20.5 + abc / 3)*(2".matches(regex));
+    	assertTrue("(20.5 + (abc / 3)*(2".matches(regex));
+    	assertTrue("(abc)*2".matches(regex));
+    	assertTrue("__".matches(regex));
+    	assertFalse("2 + a12 * ".matches(regex));
+    	assertFalse("2 + )a12 * ".matches(regex));
+    	assertFalse("(2 + )a12 * ".matches(regex));
+
 
     }
 }

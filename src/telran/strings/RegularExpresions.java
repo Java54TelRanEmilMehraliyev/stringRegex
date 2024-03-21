@@ -32,23 +32,28 @@ public class RegularExpresions {
 		return String.format("%1$s(\\.%1$s){3}", ipOctetExpr);
 	}
 	
-	public static String SimpleArithmeticExpression() {
-		//TODO
-		//operations only binary +,-,*./
-		//operands only integer numbers
-		// no brackets
+	public static String commonArithmeticExpression() {
+		
 		String operand = integerNumberExp();
 		String operation = operationExp();
 		return String.format("%1$s(%2$s%1$s)*",operand,operation);
 	}
-
+   
 	private static String operationExp() {
 		return "[-+*/]";
 	}
 
 	private static String integerNumberExp() {
 		
-		return "(\\s*\\d+\\s*)";
+		return "(\\s*\\d+\\.?\\s*)";
+	}
+	private static String anyNumber() {
+		return "(\\d*\\.?\\d+|d+\\.)";
 	}
 	
+	public static String arithmeticOperandExpression() {
+		String variable = javaVariable();
+	    String numberExp = anyNumber();
+	    return String.format("[\\s(]*(%s|%s)[\\s)]", variable,numberExp);
+	}
 }
