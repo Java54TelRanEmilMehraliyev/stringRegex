@@ -114,7 +114,7 @@ class RegularExpressionsTests {
 	@Test
 	@DisplayName("test of simple arithmetic expression")
 	void simpleArithmeticExpressionsTest() {
-		String regex = RegularExpresions.arithmeticExpression();
+		String regex = RegularExpresions.simpleArithmeticExpression();
 		assertTrue("20".matches(regex));
 		assertTrue(" 20 +3 /2 *100".matches(regex));
 		assertTrue("10000-1".matches(regex));
@@ -127,7 +127,7 @@ class RegularExpressionsTests {
 	@Test
 	@DisplayName("test arithmetic expressions with any numbers or variable names and brackets")
 	void arithmeticExpressionTest() {
-		String regex = RegularExpresions.arithmeticOperandExpression();
+		String regex = RegularExpresions.arithmeticExpression();
 		assertTrue("(20.5 + abc)*2".matches(regex));
 		assertTrue("(20.5 + abc12))*2".matches(regex));
 		assertTrue("(20.5 + (abc$ / 3)*(2".matches(regex));

@@ -2,14 +2,26 @@ package telran.strings;
 
 public class Validations {
 
-	 public static boolean isArithmeticExpression(String expression) {
-		 //TODO
-		 //1. Checking against the regular expression(use current one from RegEx class)
-		 //2. Checking brackets pair for each '(' there should be ')'
-		 //consider introducing counter that increased for '(' and decrease for ')'
-		 //if during passing over the string expression counter < 0 returning false
-		 //if after passing whole string counter != 0 return false
-		 //p.s string shouldn't have ')' first, in this case should return -1 and return false. 
-		 return false;
-	 }
+	public static boolean isArithmeticExpression(String expression) {
+
+		String regex = RegularExpresions.arithmeticExpression();
+		boolean regexMatch = expression.matches(regex);
+		return regexMatch && isBracketsParity(expression);
+	}
+
+	private static boolean isBracketsParity(String expression) {
+		int count = 0;
+		for (int i = 0; i < expression.length(); i++) {
+			char ch = expression.charAt(i);
+			if (ch == '(') {
+				count++;
+			} else if (ch == ')') {
+				count--;
+				if (count < 0) {
+					return false;
+				}
+			}
+		}
+		return count == 0;
+	}
 }
