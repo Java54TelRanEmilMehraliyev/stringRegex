@@ -6,10 +6,10 @@ public class Validations {
 
 		String regex = RegularExpresions.arithmeticExpression();
 		boolean regexMatch = expression.matches(regex);
-		return regexMatch && isBracketsParity(expression);
+		return regexMatch && bracketsParity(expression);
 	}
 
-	private static boolean isBracketsParity(String expression) {
+	private static boolean bracketsParity(String expression) {
 		int count = 0;
 		for (int i = 0; i < expression.length(); i++) {
 			char ch = expression.charAt(i);
